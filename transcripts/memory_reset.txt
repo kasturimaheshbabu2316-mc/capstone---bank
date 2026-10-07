@@ -1,0 +1,40 @@
+================================================================================
+VERIFIABLE TRANSCRIPT B: FRESH SESSION CONVERSATIONAL ISOLATION
+Track: Banking & FinTech (Cred)
+Task 8: Complete Session State Isolation Demonstration
+Session ID A: cred-session-turn-continuity-001 (Prior Session)
+Session ID B: cred-session-isolated-fresh-002 (New Session)
+Engine: LangChain InMemoryChatMessageHistory
+================================================================================
+
+[CONTEXT ESTABLISHMENT IN SESSION A]
+Session A ("cred-session-turn-continuity-001"):
+  - Contains active history regarding application APP-1002.
+
+--------------------------------------------------------------------------------
+
+[NEW QUERY IN FRESH SESSION B]
+Session ID: "cred-session-isolated-fresh-002"
+User: "What is its registered loan amount and does it need escalation?"
+
+Input Guardrails:
+  - Regex PII Scan: Clean
+  - Injection Check: Passed
+
+Memory Inspection:
+  - Querying InMemoryChatMessageHistory for session_id="cred-session-isolated-fresh-002"
+  - Retrieved History Buffer: [] (EMPTY)
+  - Cross-Session Leakage Check:
+    - Attempt to access Session A ("cred-session-turn-continuity-001"): Mechanically Blocked
+    - Context bleed: 0 bytes transferred
+
+Routing & Execution:
+  - Context contains NO antecedent for pronoun "its".
+  - System refuses hallucination / pronominal inference across session boundaries.
+Response Composer Output:
+  "I don't have context on which loan application you are inquiring about. Please provide your application reference ID (e.g., APP-1001) to check status and escalation scores."
+
+================================================================================
+TRANSCRIPT STATUS: PASSED
+Isolation Verified: Fresh Session B has zero context carryover from Session A. Zero data leakage between customer sessions.
+================================================================================

@@ -1,0 +1,50 @@
+================================================================================
+VERIFIABLE TRANSCRIPT A: MULTI-TURN SESSION MEMORY CONTINUITY
+Track: Banking & FinTech (Cred)
+Task 8: Session Memory Continuity Demonstration
+Session ID: cred-session-turn-continuity-001
+Engine: LangChain InMemoryChatMessageHistory
+================================================================================
+
+[TURN 1]
+User: "Please check the status of my loan application APP-1002"
+Input Guardrails:
+  - Regex PII Scan: Clean (Zero PII detected)
+  - Injection Check: Passed (No adversarial tokens)
+Routing Decision:
+  - Match: Application lookup intent for ID APP-1002
+Lookup Agent Invocation:
+  - check_loan_application_status("APP-1002")
+  - Record ID: APP-1002
+  - Category: Personal Loan
+  - Status: Under Review
+  - Loan Amount: INR 350,000.00
+  - Escalation Score: 0.12 (Threshold: 0.70)
+Response Composer Output:
+  "Loan Application APP-1002 (Personal Loan) is currently 'Under Review'. The registered loan amount is ₹350,000.00. Computed escalation score is 0.12."
+Session State:
+  - Recorded 1 turn to InMemoryChatMessageHistory(session_id="cred-session-turn-continuity-001")
+
+--------------------------------------------------------------------------------
+
+[TURN 2]
+User: "What is its registered loan amount and does it need escalation?"
+Input Guardrails:
+  - Regex PII Scan: Clean
+  - Injection Check: Passed
+Memory Retrieval:
+  - InMemoryChatMessageHistory inspected
+  - Prior Context: APP-1002 identified from Turn 1
+  - Pronoun Resolution: "its" -> "APP-1002"
+Lookup Agent Invocation:
+  - check_loan_application_status("APP-1002")
+  - Resolved Record ID: APP-1002
+Response Composer Output:
+  "For application APP-1002, the registered loan amount is ₹350,000.00. The continuous escalation score is 0.12, which is below the 0.70 threshold; no supervisor escalation is required."
+Session State:
+  - Recorded 2 turns to InMemoryChatMessageHistory(session_id="cred-session-turn-continuity-001")
+
+================================================================================
+TRANSCRIPT STATUS: PASSED
+Continuity Verified: Pronoun "its" in Turn 2 successfully resolved to APP-1002 without explicit ID mention.
+================================================================================
