@@ -169,4 +169,3 @@ Under the duplex streaming route `WebSocket /ws/chat` in [`api/app.py`](file:///
    * The server catches `WebSocketDisconnect` cleanly.
    * Logs a structured audit event (`status_code=1000`).
    * Closes socket handles gracefully without memory leaks.
-

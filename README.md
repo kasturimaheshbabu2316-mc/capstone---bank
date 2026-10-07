@@ -104,4 +104,3 @@ pytest evaluation/test_suite.py
 ```bash
 uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
-
