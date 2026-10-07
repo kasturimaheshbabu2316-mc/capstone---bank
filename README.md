@@ -86,6 +86,7 @@ The **Cred Domain Support Agent** is an enterprise-grade AI lending operations a
 ## 3. Quick Start & Execution
 
 ### 3.1 Setup Environment
+
 ```bash
 python -m venv .venv
 .\.venv\Scripts\activate
@@ -93,11 +94,14 @@ pip install -r requirements.txt
 ```
 
 ### 3.2 Run Automated Test Suite
+
 ```bash
 pytest evaluation/test_suite.py
 ```
 
 ### 3.3 Run API Server
+
 ```bash
 uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
+

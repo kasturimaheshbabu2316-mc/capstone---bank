@@ -157,4 +157,3 @@
 * **Mandatory Single Document Principle:** All Python (`.py`) source code files across the project must be compiled and maintained inside a single consolidated document named **`app`** (`app.md` / `doc/app.md`).
 * **Folder Hierarchy Preservation:** In the `app` document, each `.py` file must be grouped, titled, and indexed under its originating folder (e.g., `rag/`, `agents/`, `api/`, `review/`, `governance/`, `evaluation/`).
 * **Operational Purpose:** Enables immediate full-text searchability, streamlined code audits, and rapid project comprehension without navigating multiple fragmented directories.
-

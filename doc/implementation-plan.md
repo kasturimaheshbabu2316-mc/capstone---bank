@@ -11,6 +11,7 @@
 ## 1. Executive Implementation Strategy
 
 The implementation plan is structured around a phased, test-driven engineering methodology ensuring:
+
 1. **Complete Air-Gapped Execution:** Zero reliance on live external APIs; deterministic offline execution across all agent layers.
 2. **Defensive Governance:** Ingress budget limiting, pre-flight PII redaction, post-flight grounding verification, and secondary peer review.
 3. **Mathematical Invariant Verification:** Seeded datasets, empirical threshold calibration ($\tau = 0.25$), continuous escalation scoring, and 4-dimensional quantitative evaluation.
@@ -53,6 +54,7 @@ gantt
 ## 3. Detailed Phase Breakdown & Deliverables
 
 ### Phase 1: Data Architecture & Knowledge Base (Tasks 1–2)
+
 * **Objective:** Establish authoritative ground-truth datasets and policy texts.
 * **Deliverables:**
   * [`dataset.py`](file:///c:/Users/kastu/Desktop/captstone%20-%20bank/dataset.py): Seeded generator (`seed=42`) producing 45 records. Invariants verified:
@@ -66,6 +68,7 @@ gantt
 ---
 
 ### Phase 2: RAG Pipeline, Embedding & Threshold Calibration (Tasks 3–5)
+
 * **Objective:** Implement dual chunking, ChromaDB vector indexing, empirical threshold calibration ($\tau$), and strategy benchmarking.
 * **Deliverables:**
   * [`rag/chunking.py`](file:///c:/Users/kastu/Desktop/captstone%20-%20bank/rag/chunking.py): Fixed-size splitter (200 chars / 40 overlap) and sentence-boundary splitter.
@@ -76,6 +79,7 @@ gantt
 ---
 
 ### Phase 3: Tooling, Deterministic Mock LLM & Multi-Agent Core (Tasks 6–10)
+
 * **Objective:** Build multi-agent orchestration, continuous escalation scoring, conversational memory, and security guardrails.
 * **Deliverables:**
   * [`agents/tools.py`](file:///c:/Users/kastu/Desktop/captstone%20-%20bank/agents/tools.py): `check_loan_application_status` with continuous escalation scoring:
@@ -89,6 +93,7 @@ gantt
 ---
 
 ### Phase 4: Production API, WebSocket & Structured Audit Logging (Tasks 11–12)
+
 * **Objective:** Expose high-performance REST and WebSocket interfaces with enterprise observability.
 * **Deliverables:**
   * [`api/app.py`](file:///c:/Users/kastu/Desktop/captstone%20-%20bank/api/app.py): FastAPI service with `POST /ask`, `POST /add-document`, and `WebSocket /ws/chat` catching `WebSocketDisconnect` cleanly.
@@ -97,6 +102,7 @@ gantt
 ---
 
 ### Phase 5: Quantitative Evaluation & Verifiable Transcripts (Task 13)
+
 * **Objective:** Execute 15-query benchmark scoring Accuracy, Grounding, Completeness, and Safety.
 * **Deliverables:**
   * [`evaluation/judge.py`](file:///c:/Users/kastu/Desktop/captstone%20-%20bank/evaluation/judge.py): Offline deterministic LLM-as-a-judge scoring engine.
@@ -111,6 +117,7 @@ gantt
 ---
 
 ### Phase 6: Secondary Peer Review Subsystem (Task 14)
+
 * **Objective:** Implement secondary regulatory and compliance review prior to client delivery.
 * **Deliverables:**
   * [`review/autogen_review.py`](file:///c:/Users/kastu/Desktop/captstone%20-%20bank/review/autogen_review.py): AutoGen `RoundRobinGroupChat` (max_turns=2) pairing `PolicyComplianceReviewer` and `FinalEditor`, emitting structured `VerdictModel`.
@@ -118,6 +125,7 @@ gantt
 ---
 
 ### Phase 7: AI Governance, Budget Limiting & Response Cache (Tasks 15–16)
+
 * **Objective:** Protect system resources, classify AI risk tier, and deliver sub-millisecond responses on duplicate queries.
 * **Deliverables:**
   * [`governance/budget_guard.py`](file:///c:/Users/kastu/Desktop/captstone%20-%20bank/governance/budget_guard.py): Token/character limiter (max 2,048 chars, max 512 tokens, HTTP 413) and EU AI Act / RBI High-Risk classification documentation.
